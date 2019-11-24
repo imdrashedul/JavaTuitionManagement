@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.*;
-import java.awt.Container;
 
 import library.*;
 import frames.panels.core.*;
