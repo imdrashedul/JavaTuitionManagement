@@ -11,9 +11,9 @@ import java.awt.event.*;
 import library.*;
 import frames.panels.core.*;
 
-public class AddAttendancePopup extends JDialog implements ActionListener {
-	public AddAttendancePopup(JFrame jf) {
-		super(jf, "Take Attendance", true);
+public class AddClassPopup extends JDialog implements ActionListener {
+	public AddClassPopup(JFrame jf) {
+		super(jf, "Add New Class", true);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
 
@@ -22,7 +22,7 @@ public class AddAttendancePopup extends JDialog implements ActionListener {
 		btnAdd.addActionListener(this);
 
 		this.add(btnAdd);
-		setExtendedSize(new Dimension(800,600));    
+		setExtendedSize(new Dimension(600,600));    
         this.setVisible(true);  
 	}
 

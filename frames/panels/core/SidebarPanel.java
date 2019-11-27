@@ -63,6 +63,8 @@ public class SidebarPanel extends JPanel {
 		menuList.add("Invoice");
 		menuList.add("Fees");
 		menuList.add("Session");
+		menuList.add("Class");
+		menuList.add("Section");
 		menuList.add("Grading");
 		menuList.add("Employee");
 		menuList.add("Salary");
@@ -77,6 +79,8 @@ public class SidebarPanel extends JPanel {
 		menuAction.put("Invoice", "Invoice");
 		menuAction.put("Fees", "Fees");
 		menuAction.put("Session", "Session");
+		menuAction.put("Class", "Class");
+		menuAction.put("Section", "Section");
 		menuAction.put("Grading", "Grading");
 		menuAction.put("Employee", "Employee");
 		menuAction.put("Salary", "Salary");

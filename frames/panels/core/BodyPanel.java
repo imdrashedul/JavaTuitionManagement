@@ -138,6 +138,31 @@ public class BodyPanel extends JPanel {
 		new AddSessionPopup((JFrame) SwingUtilities.getWindowAncestor(this));
 	}
 
+
+	private void __aclAddresser__Class() {
+		this.removeAll();
+		__aclInvoke__NavigationPane();
+		this.add(new ClassPanel(this, contentPosition, contentDim));
+		this.revalidate();
+		this.repaint();
+	}
+
+	private void __aclAddresser__AddNewClass() {
+		new AddClassPopup((JFrame) SwingUtilities.getWindowAncestor(this));
+	}
+
+	private void __aclAddresser__Section() {
+		this.removeAll();
+		__aclInvoke__NavigationPane();
+		this.add(new SectionPanel(this, contentPosition, contentDim));
+		this.revalidate();
+		this.repaint();
+	}
+
+	private void __aclAddresser__AddNewSection() {
+		new AddSectionPopup((JFrame) SwingUtilities.getWindowAncestor(this));
+	}
+
 	private void __aclAddresser__Grading() {
 		this.removeAll();
 		__aclInvoke__NavigationPane();
