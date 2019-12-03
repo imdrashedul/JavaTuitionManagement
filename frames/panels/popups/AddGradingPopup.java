@@ -42,7 +42,7 @@ public class AddGradingPopup extends JDialog implements ActionListener {
 		GPAto.setBounds(440, 105, 100, 30);
 
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(450, 500, 100, 30);
+		btnAdd.setBounds(440, 150, 100, 30);
 		btnAdd.addActionListener(this);
 		
 		
@@ -56,7 +56,7 @@ public class AddGradingPopup extends JDialog implements ActionListener {
 		this.add(grade);
 		this.add(labelGrade);
 		this.add(btnAdd);
-		setExtendedSize(new Dimension(600,600));    
+		setExtendedSize(new Dimension(600,245));    
         this.setVisible(true);  
 	}
 
