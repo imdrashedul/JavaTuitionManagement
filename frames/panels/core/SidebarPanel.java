@@ -46,12 +46,14 @@ public class SidebarPanel extends JPanel {
 
 	private void Construct() {
 
+		int sidebarHight = Configuration.frameHeight()-Configuration.HEADER_HEIGHT;
+
 		baseColor = new Color(47,50,61);
 		hoverColor = new Color(38, 40, 49);
 		selectedColor = new Color(30, 31, 39);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.setBounds(0, Configuration.HEADER_HEIGHT, Configuration.SIDEBAR_WIDTH, Configuration.frameHeight()-Configuration.HEADER_HEIGHT);
+		this.setBounds(0, Configuration.HEADER_HEIGHT, Configuration.SIDEBAR_WIDTH, sidebarHight);
 		this.setBackground(baseColor);
 
 		menuList = new ArrayList<>();
@@ -90,13 +92,19 @@ public class SidebarPanel extends JPanel {
 
 		menuButtons = new HashMap<>();
 
+		int sizeOfMenu = menuList.size();
+			sizeOfMenu = sizeOfMenu>1?sizeOfMenu:1;
+
+		int heightOfMenuItem = sidebarHight/sizeOfMenu;
+			heightOfMenuItem = heightOfMenuItem>50?50:heightOfMenuItem;
+
 		for(String menu:menuList) {
 			menuButtons.put(menu, new JButton(menu));
 			if (menuButtons.containsKey(menu)) {
 				menuButtons.get(menu).setIcon(Configuration.MENU_ICON);
 				menuButtons.get(menu).setIconTextGap(15);
 				menuButtons.get(menu).setModel(new FixedStateButtonModel());
-				menuButtons.get(menu).setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+				menuButtons.get(menu).setMaximumSize(new Dimension(Integer.MAX_VALUE, heightOfMenuItem));
 				menuButtons.get(menu).setForeground(new Color(230, 230, 230));
 				menuButtons.get(menu).setBackground(baseColor);
 				menuButtons.get(menu).setBorder(BorderFactory.createMatteBorder(15, 25, 15, 15, new Color(0, 0, 0, 0)));
