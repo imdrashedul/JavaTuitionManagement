@@ -67,6 +67,11 @@ public class Configuration {
 		return font;
 	}
 
+	public static void setDatePickerIcon(JButton dpButton) {
+		dpButton.setText("");
+        dpButton.setIcon(new ImageIcon(PATH_IMAGE + "pickdate.png"));
+	}
+
 	public static Font getFont(String name, int style, int size) {
 		Font f = getFont(name);
         return f.deriveFont(style, size);

@@ -7,11 +7,18 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.*;
+import java.time.*;
 
 import library.*;
+import library.datepicker.main.components.*;
+import library.datepicker.main.components.TimePickerSettings.TimeArea;
+import library.datepicker.main.zinternaltools.*;
 import frames.panels.core.*;
 
 public class AddStudentPopup extends JDialog implements ActionListener {
+
+	DatePicker dateofBirth;
+
 	public AddStudentPopup(JFrame jf) {
 		super(jf, "Add New Student", true);
 		this.setLayout(null);
@@ -65,7 +72,12 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 		JLabel labelDateOfBirth = new JLabel("Date Of Birth");
 		labelDateOfBirth.setBounds(20, 225, 150, 30);
 		
-		JTextField dateofBirth = new JTextField();
+		DatePickerSettings dateofBirthSettings = new DatePickerSettings();
+		LocalDate today = LocalDate.now();
+		dateofBirthSettings.setAllowKeyboardEditing(false);
+		dateofBirthSettings.setFirstDayOfWeek(DayOfWeek.SATURDAY);
+		dateofBirth = new DatePicker(dateofBirthSettings);
+		Configuration.setDatePickerIcon(dateofBirth.getComponentToggleCalendarButton());
 		dateofBirth.setBounds(190, 225, width, 30);
 		
 		JLabel labelBloodGroup = new JLabel("Blood Group");
@@ -240,6 +252,8 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+	    
+		System.out.println(dateofBirth.getDateStringOrSuppliedString("Empty"));
 	    dispose();
 	}
 }

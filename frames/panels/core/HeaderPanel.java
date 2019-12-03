@@ -71,7 +71,7 @@ public class HeaderPanel extends JPanel {
 		this.add(userCard);
 
 
-		JLabel lbLogo = new JLabel(new ImageIcon(Configuration.PATH_IMAGE + "logo1.png"));
+		JLabel lbLogo = new JLabel(new ImageIcon(Configuration.PATH_IMAGE + "logo.png"));
 		this.add(lbLogo);
 
 		this.setLayout(sl);
