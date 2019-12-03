@@ -21,7 +21,7 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 		int width = 350;
 
 		JPanel jp = new JPanel();
-		jp.setPreferredSize(new Dimension(prefWidth, 620));
+		jp.setPreferredSize(new Dimension(prefWidth, 815));
 		jp.setLayout(null);
 
 		JLabel labelFirstName = new JLabel("First Name");
@@ -118,14 +118,57 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 		JComboBox<String> comboboxSection = new JComboBox<String>(Section);
 	    comboboxSection.setBounds(190, 545, width, 30);
 		
+		JLabel labelInstitute = new JLabel("Institute");
+		labelInstitute.setBounds(20, 585, 150, 30); 
+		
+		JTextField institute = new JTextField();
+		institute.setBounds(190, 585, width, 30);
+		
+		JLabel labelAimInLife = new JLabel("Aim In Life");
+		labelAimInLife.setBounds(20, 625, 150, 30);
+		
+		ButtonGroup groupAimInLife = new ButtonGroup(); 
+		
+		JRadioButton radiobuttonMedical = new JRadioButton("MEDICAL");
+		radiobuttonMedical.setBounds(200, 625, 80, 30);
+		
+		JRadioButton radiobuttonEngineering = new JRadioButton("ENGINEERING");
+		radiobuttonEngineering.setBounds(300, 625, 120, 30);
+		
+		JRadioButton radiobuttonOthers = new JRadioButton("OTHERS");
+		radiobuttonOthers.setBounds(420, 625, 80, 30);
+		
+		JLabel labelEmail = new JLabel("Email");
+		labelEmail.setBounds(20, 700, 150, 30); 
+		
+		JTextField Email = new JTextField();
+		Email.setBounds(190, 700, width, 30);
+		
+		JLabel labelPassword = new JLabel("Password");
+		labelPassword.setBounds(20, 740, 150, 30); 
+		
+		JPasswordField Password = new JPasswordField();
+		Password.setBounds(190, 740, width, 30);
+		
+		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(190, 585, 100, 30);
+		btnAdd.setBounds(190, 780, 100, 30);
 		btnAdd.addActionListener(this);
 
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(300, 585, 100, 30);
+		btnCancel.setBounds(300, 780, 100, 30);
 		btnCancel.addActionListener(this);
 
+		jp.add(Password);
+		jp.add(labelPassword);
+		jp.add(Email);
+		jp.add(labelEmail);
+		jp.add(radiobuttonOthers);
+		jp.add(radiobuttonEngineering);
+		jp.add(radiobuttonMedical);
+		jp.add(labelAimInLife);
+		jp.add(labelInstitute);
+		jp.add(institute);
 		jp.add(comboboxSection);
 		jp.add(labelSection);
 		jp.add(comboboxClass);
@@ -159,6 +202,7 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 		jp.add(titleBar("Personal Information", prefWidth, new Point(0, 0)));
 		jp.add(titleBar("Contact Information", prefWidth, new Point(0, 300)));
 		jp.add(titleBar("Academic Information", prefWidth, new Point(0, 440)));
+		jp.add(titleBar("Login Information", prefWidth, new Point(0, 660)));
 
 		JScrollPane sp = new JScrollPane(jp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setBorder(BorderFactory.createEmptyBorder());

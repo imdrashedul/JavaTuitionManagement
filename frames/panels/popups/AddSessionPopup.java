@@ -16,13 +16,29 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 		super(jf, "Add New Session", true);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		JLabel labelStartYear = new JLabel("Start Year");
+		labelStartYear.setBounds(20, 25, 150, 30);
+		
+		JTextField startYear = new JTextField();
+		startYear.setBounds(190, 25, 350, 30);
+		
+		JLabel labelEndYear = new JLabel("End Year");
+		labelEndYear.setBounds(20, 65, 150, 30);
+		
+		JTextField endYear = new JTextField();
+		endYear.setBounds(190, 65, 350, 30);
 
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(450, 500, 100, 30);
+		btnAdd.setBounds(440, 105, 100, 30);
 		btnAdd.addActionListener(this);
 
+		this.add(endYear);
+		this.add(labelEndYear);
+		this.add(startYear);
+		this.add(labelStartYear);
 		this.add(btnAdd);
-		setExtendedSize(new Dimension(600,600));    
+		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}
 

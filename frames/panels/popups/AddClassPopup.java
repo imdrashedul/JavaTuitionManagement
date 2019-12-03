@@ -16,13 +16,31 @@ public class AddClassPopup extends JDialog implements ActionListener {
 		super(jf, "Add New Class", true);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		JLabel labelClassName = new JLabel("Class Name");
+		labelClassName.setBounds(20, 25, 150, 30);
+		
+		JTextField className = new JTextField();
+		className.setBounds(190, 25, 350, 30);
+		
+		JLabel labelNumericName = new JLabel("Numeric Name");
+		labelNumericName.setBounds(20, 65, 150, 30);
+		
+		JTextField numericName = new JTextField();
+		numericName.setBounds(190, 65, 350, 30);
 
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(450, 500, 100, 30);
+		btnAdd.setBounds(440, 105, 100, 30);
 		btnAdd.addActionListener(this);
 
+		
+
+		this.add(numericName);
+		this.add(labelNumericName);
+		this.add(className);
+		this.add(labelClassName);
 		this.add(btnAdd);
-		setExtendedSize(new Dimension(600,600));    
+		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}
 
