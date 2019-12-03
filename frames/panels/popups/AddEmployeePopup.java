@@ -16,12 +16,12 @@ public class AddEmployeePopup extends JDialog implements ActionListener {
 		super(jf, "Add New Employee", true);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
-		
+
 		int prefWidth = 566;
 		int width = 350;
-		
+
 		JPanel jp = new JPanel();
-		jp.setPreferredSize(new Dimension(prefWidth, 750));
+		jp.setPreferredSize(new Dimension(prefWidth, 720));
 		jp.setLayout(null);
 
 		JLabel labelFirstName = new JLabel("First Name");
@@ -82,64 +82,128 @@ public class AddEmployeePopup extends JDialog implements ActionListener {
 		JTextField address = new JTextField();
 		address.setBounds(190, 325, width, 30);
 		
-		JLabel labelMobileEmployee = new JLabel("Mobile");
-		labelMobileEmployee.setBounds(20, 365, 150, 30);
+		JLabel labelMobileNumber = new JLabel("Mobile");
+		labelMobileNumber.setBounds(20, 365, 150, 30);
 		
 		JTextField mobileEmployee = new JTextField();
 		mobileEmployee.setBounds(190, 365, width, 30);
 		
+		//JLabel labelMobileParents = new JLabel("Mobile(Parents)");
+		//labelMobileParents.setBounds(20, 405, 150, 30);
+		
+		//JTextField mobileParents = new JTextField();
+		//mobileParents.setBounds(190, 405, width, 30);
+		
+		//JLabel labelAcademicYear = new JLabel("Academic Year");
+		//labelAcademicYear.setBounds(20, 465, 150, 30);
+		
+		//String AcademicYear[]={"2010-2011","2011-2012","2012-2013","2013-2014","2014-2015","2015-2016","2016-2017","2017-2018","2018-2019","2019-2020"};
+		
+		//JComboBox<String> comboboxAcademicYear = new JComboBox<String>(AcademicYear);
+	    //comboboxAcademicYear.setBounds(190, 465, width, 30);
+		
+		//JLabel labelClass = new JLabel("Class");
+		//labelClass.setBounds(20, 505, 150, 30);
+		
+		//String Class[]={"SSC","HSC","ADMISSION"};
+		
+		/*JComboBox<String> comboboxClass = new JComboBox<String>(Class);
+	    comboboxClass.setBounds(190, 505, width, 30);
+		
+		JLabel labelSection = new JLabel("Section");
+		labelSection.setBounds(20, 545, 150, 30);
+		
+		String Section[]={"A","B","C","D"};
+		
+		JComboBox<String> comboboxSection = new JComboBox<String>(Section);
+	    comboboxSection.setBounds(190, 545, width, 30);
+		
+		JLabel labelInstitute = new JLabel("Institute");
+		labelInstitute.setBounds(20, 585, 150, 30); 
+		
+		JTextField institute = new JTextField();
+		institute.setBounds(190, 585, width, 30);
+		
+		JLabel labelAimInLife = new JLabel("Aim In Life");
+		labelAimInLife.setBounds(20, 625, 150, 30);
+		
+		ButtonGroup groupAimInLife = new ButtonGroup(); 
+		
+		JRadioButton radiobuttonMedical = new JRadioButton("MEDICAL");
+		radiobuttonMedical.setBounds(200, 625, 80, 30);
+		
+		JRadioButton radiobuttonEngineering = new JRadioButton("ENGINEERING");
+		radiobuttonEngineering.setBounds(300, 625, 120, 30);
+		
+		JRadioButton radiobuttonOthers = new JRadioButton("OTHERS");
+		radiobuttonOthers.setBounds(420, 625, 80, 30);*/
+		
 		JLabel labelEmail = new JLabel("Email");
-		labelEmail.setBounds(20, 438, 150, 30);
+		labelEmail.setBounds(20, 445, 150, 30); 
 		
 		JTextField Email = new JTextField();
-		Email.setBounds(190, 438, width, 30);
+		Email.setBounds(190, 445, width, 30);
 		
-		JLabel labelPass = new JLabel("Password");
-		labelPass.setBounds(20, 478, 150, 30);
+		JLabel labelPassword = new JLabel("Password");
+		labelPassword.setBounds(20, 485, 150, 30); 
 		
-		JPasswordField Pass = new JPasswordField();
-		Pass.setBounds(190, 478, width, 30);
+		JPasswordField Password = new JPasswordField();
+		Password.setBounds(190, 485, width, 30);
 		
 		JLabel labelSalary = new JLabel("Salary");
-		labelSalary.setBounds(20, 538, 150, 30);
+		labelSalary.setBounds(20, 565, 150, 30); 
 		
 		JTextField Salary = new JTextField();
-		Salary.setBounds(190, 538, width, 30);
+		Salary.setBounds(190, 565, width, 30);
 		
-		JLabel labelHire = new JLabel("Hire Date");
-		labelHire.setBounds(20, 578, 150, 30);
+		JLabel labelHireDate = new JLabel("Hire Date");
+		labelHireDate.setBounds(20, 605, 150, 30); 
 		
-		JTextField Hire = new JTextField();
-		Hire.setBounds(190, 578, width, 30);
+		JTextField HireDate = new JTextField();
+		HireDate.setBounds(190, 605, width, 30);
 		
-		JLabel labelResign = new JLabel("Resignation Date");
-		labelResign.setBounds(20, 618, 150, 30);
+		JLabel labelResignationDate = new JLabel("Resignation Date");
+		labelResignationDate.setBounds(20, 645, 150, 30); 
 		
-		JTextField Resign = new JTextField();
-		Resign.setBounds(190,618, width, 30);
+		JTextField ResignationDate = new JTextField();
+		ResignationDate.setBounds(190, 645, width, 30);
+		
+		
 		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(250, 700, 100, 30);
+		btnAdd.setBounds(190, 685, 100, 30);
 		btnAdd.addActionListener(this);
-		
+
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(400, 700, 100, 30);
+		btnCancel.setBounds(300, 685, 100, 30);
 		btnCancel.addActionListener(this);
-        
-		jp.add(btnCancel);
-		jp.add(btnAdd);
+
+		jp.add(ResignationDate);
+		jp.add(labelResignationDate);
+		jp.add(HireDate);
+		jp.add(labelHireDate);
 		jp.add(Salary);
 		jp.add(labelSalary);
-		jp.add(Hire);
-		jp.add(labelHire);
-		jp.add(Resign);
-		jp.add(labelResign);
-		jp.add(Pass);
-		jp.add(labelPass);
+		jp.add(Password);
+		jp.add(labelPassword);
 		jp.add(Email);
 		jp.add(labelEmail);
+		/*jp.add(radiobuttonOthers);
+		jp.add(radiobuttonEngineering);
+		jp.add(radiobuttonMedical);
+		jp.add(labelAimInLife);
+		jp.add(labelInstitute);
+		jp.add(institute);
+		jp.add(comboboxSection);
+		jp.add(labelSection);
+		jp.add(comboboxClass);
+		jp.add(labelClass);
+		jp.add(comboboxAcademicYear);
+		jp.add(labelAcademicYear);*/
+		//jp.add(mobileParents);
+		//jp.add(labelMobileParents);
 		jp.add(mobileEmployee);
-		jp.add(labelMobileEmployee);
+		jp.add(labelMobileNumber);
 		jp.add(address);
 		jp.add(labelAddress);
 		jp.add(comboboxBloodGroups);
@@ -157,22 +221,21 @@ public class AddEmployeePopup extends JDialog implements ActionListener {
 		jp.add(labelLastName);
 		jp.add(firstName);
 		jp.add(labelFirstName);
-		
-		
+		jp.add(btnAdd);
+		jp.add(btnCancel);
+
 		jp.add(titleBar("Personal Information", prefWidth, new Point(0, 0)));
 		jp.add(titleBar("Contact Information", prefWidth, new Point(0, 300)));
-		jp.add(titleBar("Login Information", prefWidth, new Point(0, 410)));
-		jp.add(titleBar("Official Information", prefWidth, new Point(0, 510)));
-		
+		//jp.add(titleBar("Academic Information", prefWidth, new Point(0, 440)));
+		jp.add(titleBar("Login Information", prefWidth, new Point(0, 405)));
+		jp.add(titleBar("Official Information", prefWidth, new Point(0, 525)));
 		
 		JScrollPane sp = new JScrollPane(jp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setBorder(BorderFactory.createEmptyBorder());
 
 		this.setContentPane(sp);
-
-		
 		setExtendedSize(new Dimension(600,600));    
-        this.setVisible(true);  
+        this.setVisible(true);	
 	}
 
 	private void setExtendedSize(Dimension dimension)
@@ -182,7 +245,7 @@ public class AddEmployeePopup extends JDialog implements ActionListener {
 		this.setSize(dimension);
 		this.setLocation(location);
 	}
-	
+
 	private JPanel titleBar( String text, int width, Point location) {
 		
 		SpringLayout sl = new SpringLayout();

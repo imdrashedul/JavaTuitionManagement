@@ -16,13 +16,31 @@ public class AddSectionPopup extends JDialog implements ActionListener {
 		super(jf, "Add New Section", true);
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
-
+		
+		JLabel labelSectionName = new JLabel("Section Name");
+		labelSectionName.setBounds(20, 25, 150, 30);
+		
+		JTextField sectionName = new JTextField();
+		sectionName.setBounds(190, 25, 350, 30);
+		
+		JLabel labelClass = new JLabel("Class Name");
+		labelClass.setBounds(20, 65, 150, 30);
+		
+		String ClassName[]={"SSC","HSC "};
+		
+		JComboBox<String> comboboxClassName = new JComboBox<String>(ClassName);
+	    comboboxClassName.setBounds(190, 65, 350, 30);
+		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(450, 500, 100, 30);
+		btnAdd.setBounds(440, 105, 100, 30);
 		btnAdd.addActionListener(this);
 
+		this.add(comboboxClassName);
+		this.add(labelClass);
+		this.add(sectionName);
+		this.add(labelSectionName);
 		this.add(btnAdd);
-		setExtendedSize(new Dimension(600,600));    
+		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}
 
