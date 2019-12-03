@@ -96,7 +96,7 @@ public class SidebarPanel extends JPanel {
 			sizeOfMenu = sizeOfMenu>1?sizeOfMenu:1;
 
 		int heightOfMenuItem = sidebarHight/sizeOfMenu;
-			heightOfMenuItem = heightOfMenuItem>50?50:heightOfMenuItem;
+			heightOfMenuItem = heightOfMenuItem>50?50:(heightOfMenuItem<25?25:heightOfMenuItem);
 
 		for(String menu:menuList) {
 			menuButtons.put(menu, new JButton(menu));
@@ -107,7 +107,7 @@ public class SidebarPanel extends JPanel {
 				menuButtons.get(menu).setMaximumSize(new Dimension(Integer.MAX_VALUE, heightOfMenuItem));
 				menuButtons.get(menu).setForeground(new Color(230, 230, 230));
 				menuButtons.get(menu).setBackground(baseColor);
-				menuButtons.get(menu).setBorder(BorderFactory.createMatteBorder(15, 25, 15, 15, new Color(0, 0, 0, 0)));
+				menuButtons.get(menu).setBorder(BorderFactory.createMatteBorder(0, 25, 0, 15, new Color(0, 0, 0, 0)));
 				menuButtons.get(menu).setFocusPainted(false);
 				menuButtons.get(menu).setHorizontalAlignment(SwingConstants.LEFT);
 				menuButtons.get(menu).setFont(Configuration.getFont(Configuration.FONT_LIGHT, Font.PLAIN, 18));
