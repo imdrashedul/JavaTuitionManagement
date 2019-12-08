@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.lang.reflect.*;
 
 import library.*;
+import frames.LoginFrame;
 import frames.panels.*;
 import frames.panels.popups.*;
 
@@ -205,6 +206,13 @@ public class BodyPanel extends JPanel {
 		this.add(new SettingsPanel(contentPosition, contentDim));
 		this.revalidate();
 		this.repaint();
+	}
+
+	private void __aclAddresser__Logout() {
+		JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+		LoginFrame loginFrame = new LoginFrame();
+		loginFrame.setVisible(true);
+		parent.setVisible(false);
 	}
 
 	private void __aclInvoke__Error404() {

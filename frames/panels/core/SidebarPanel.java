@@ -71,6 +71,7 @@ public class SidebarPanel extends JPanel {
 		menuList.add("Employee");
 		menuList.add("Salary");
 		menuList.add("Settings");
+		menuList.add("Logout");
 
 		menuAction = new HashMap<>();
 		menuAction.put("Dashboard", "DashBoard");
@@ -86,7 +87,7 @@ public class SidebarPanel extends JPanel {
 		menuAction.put("Grading", "Grading");
 		menuAction.put("Employee", "Employee");
 		menuAction.put("Salary", "Salary");
-		menuAction.put("Settings", "Settings");
+		menuAction.put("Logout", "Logout");
 
 		menuColors = new HashMap<>();
 

@@ -16,10 +16,42 @@ public class Configuration {
 	public static final String PATH_IMAGE = "assets/images/";
 	public static final ImageIcon SYSTEM_ICON = new ImageIcon("assets/images/appicon.png");
 	public static final ImageIcon MENU_ICON = new ImageIcon("assets/images/it.png");
+	
+	public static final String DB_NAME = "java_tuition_management";
+	public static final String DB_FILE = ".env";
+	public static final String DB_USER = "root";
+	public static final String DB_PASS = "";
+	public static final String DB_PREFIX = "tm_";
+
+	public static final String TABLE_ATTENDANCE = "attendance";
+	public static final String TABLE_CLASSES = "classes";
+	public static final String TABLE_EXAMS = "exams";
+	public static final String TABLE_FEES = "fees";
+	public static final String TABLE_FEES_HISTORY = "fees_history";
+	public static final String TABLE_FEES_TYPE = "fees_type";
+	public static final String TABLE_GRADING = "grading";
+	public static final String TABLE_INVOICE = "invoice";
+	public static final String TABLE_INVOICE_ITEM = "invoice_item";
+	public static final String TABLE_INVOICE_PAYMENT = "invoice_payment";
+	public static final String TABLE_MARKS = "marks";
+	public static final String TABLE_SALARY = "salary";
+	public static final String TABLE_SECTION = "section";
+	public static final String TABLE_SESSION = "session";
+	public static final String TABLE_SESSION_DATA = "session_data";
+	public static final String TABLE_USERS = "users";
+	public static final String TABLE_USERS_DATA = "users_data";
+	public static final String TABLE_WAIVER = "waiver";
+
 	public static final String FONT_PRIMARY = "TimesRoman";
 	public static final String FONT_LIGHT = "MontserratLight.ttf";
 	public static final String FONT_REGULAR = "MontserratRegular.ttf";
 	public static final String SYSTEM_DEVELOPER = "M. Rashedul Islam";
+	public static final String ENC_SALT = "$a1h9Sa&6pLxS1";
+	
+	public static final String ROLE_ADMIN = "admin";
+	public static final String ROLE_EMPLOYEE = "employee";
+	public static final String ROLE_STUDENT = "student";
+
 	public static final int SIDEBAR_WIDTH = 260;
 	public static final int HEADER_HEIGHT = 60;
 	public static final int FOOTER_HEIGHT = 60;

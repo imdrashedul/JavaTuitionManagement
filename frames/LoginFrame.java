@@ -7,14 +7,19 @@ import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.sql.SQLException;
 
 // Custom package
 import library.*;
+import models.*;
+import entity.*;
+import library.apachelang3.StringUtils;
 
 public class LoginFrame extends JFrame implements ActionListener
 {
-	private JLabel loginTitle, loginTitleImage, labelUsername, labelPassword, resetLabel, copyRight, creditLabel;
-	private JTextField inputUsername;
+	private JLabel loginTitle, loginTitleImage, labelEmail, labelPassword, resetLabel, copyRight, creditLabel;
+	private JTextField inputEmail;
 	private JPasswordField inputPassword;
 	private JButton loginButton;
 	private JPanel panel;
@@ -42,13 +47,13 @@ public class LoginFrame extends JFrame implements ActionListener
 		loginTitle.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
 		panel.add(loginTitle);
 
-		labelUsername = new JLabel("USERNAME:");
-		labelUsername.setBounds(90, 175, 200, 10);
-		panel.add(labelUsername);
+		labelEmail = new JLabel("EMAIL:");
+		labelEmail.setBounds(90, 175, 200, 10);
+		panel.add(labelEmail);
 
-		inputUsername = new JTextField();
-		inputUsername.setBounds(90, 190, 200, 30);
-		panel.add(inputUsername);
+		inputEmail = new JTextField();
+		inputEmail.setBounds(90, 190, 200, 30);
+		panel.add(inputEmail);
 
 		labelPassword =  new JLabel("PASSWORD:");
 		labelPassword.setBounds(90, 230, 200, 10);
@@ -84,41 +89,33 @@ public class LoginFrame extends JFrame implements ActionListener
 		
 		if(command.equals(loginButton.getText()))
 		{
-			//UserRepo ur = new UserRepo();
-			//User user = ur.getUser(userTF.getText(), passPF.getText());		
-			
-			// if(user != null)
-			// {
-			// 	if(user.getStatus() == 0 || user.getStatus() == 1)
-			// 	{
-					HomeFrame homeFrame = new HomeFrame();
-					//adminHome.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					homeFrame.setVisible(true);
-					this.setVisible(false);
-			// 	}
-			// 	else if(user.getStatus() == 2)
-			// 	{
-			// 		CustomerHome ch = new CustomerHome(user);
-			// 		ch.setVisible(true);
-			// 		this.setVisible(false);
-			// 	}
-			// 	else{}
-			// }
-			// else
-			// {
-			// 	JOptionPane.showMessageDialog(this, "Invaild Id or Password");
-			// }
+			String email = inputEmail.getText();
+			String password = inputPassword.getText();
+
+			if(!StringUtils.isEmpty(email) && !StringUtils.isEmpty(password)) {
+				try {
+					MUser mUser = new MUser();
+					User user = mUser.retrive(new Email(email));
+
+					if(user!=null && user.getEmail().get().equals(email)) {
+						if(user.getPassHash().equals(HashManager.md5(password))) {
+							HomeFrame homeFrame = new HomeFrame();
+							homeFrame.setVisible(true);
+							this.setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(this, "Password doesn't match !", "ERROR OCCURED", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(this, "Email not found !", "ERROR OCCURED", JOptionPane.ERROR_MESSAGE);
+					}
+
+				} catch (DatabaseException | SQLException ex) {
+					JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR OCCURED", JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this, "Email and Password are Required", "ERROR OCCURED", JOptionPane.ERROR_MESSAGE);
+			}		
 		}
-		// else if(command.equals(exitBtn.getText()))
-		// {
-		// 	System.exit(0);
-		// }
-		// else if(command.equals(regBtn.getText()))
-		// {
-		// 	RegistrationFrame rf = new RegistrationFrame(this);
-		// 	rf.setVisible(true);
-		// 	this.setVisible(false);
-		// }
 		else{}
 	}
 }
