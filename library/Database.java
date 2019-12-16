@@ -188,6 +188,60 @@ public class Database {
 		return lastInsertId;
 	}
 
+	public int insert(String table, ArrayList<String> columns, ArrayList<ArrayList<Object>> rows) throws DatabaseException, SQLException {
+		if(!this.isConnected()) this.connect();
+
+		int counter = 1; 
+
+		int rowsAffect = 0;
+		int totalColumns = columns.size();
+		int totalRows = rows.size();
+
+		String query = "";
+		String maps = "";
+
+		ArrayList<Object> values = new ArrayList<Object>();
+
+		if(totalColumns>0 && totalRows>0) {
+			query += "INSERT INTO `"+getTable(table)+"` ( ";
+
+			for(String column:columns) {
+				query += counter==totalColumns ? "`" + column + "` " : "`" + column + "`, ";
+				counter++;
+			}
+
+			query += ") VALUES ";
+
+			counter = 1;
+
+			for(ArrayList<Object> row:rows) {
+				int colCounter = 1;
+				maps += "( ";
+				for(Object data:row) {
+					maps += colCounter==totalColumns ? "? ":"?, ";
+					values.add(data);
+					colCounter++;
+				}
+				maps += counter==totalRows ? ");":"), ";
+				counter++;
+			}
+
+			query += maps;
+		}
+
+		if(!StringUtils.isEmpty(query) && values.size()>0) {
+			prepared = this.connection.prepareStatement(query);
+			counter = 1;
+			for(Object value:values) {
+				prepared.setObject(counter, value);
+				counter++; 
+			}
+			rowsAffect = prepared.executeUpdate();
+		}
+
+		return rowsAffect;
+	}
+
 	public int update(String table, HashMap<String, Object> update, HashMap<String, Object> where) throws DatabaseException, SQLException {
 		if(!this.isConnected()) this.connect();
 

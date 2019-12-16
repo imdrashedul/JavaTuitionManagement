@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Point;
 
 import library.*;
+import entity.*;
 import frames.panels.core.*;
 
 public class HomeFrame extends JFrame
@@ -19,7 +20,7 @@ public class HomeFrame extends JFrame
 	private FooterPanel footer;
 	private BodyPanel body;
 
-	public HomeFrame()
+	public HomeFrame(User user)
 	{
 		super("Tution Management System");
 		this.setIconImage(Configuration.SYSTEM_ICON.getImage());
@@ -30,9 +31,9 @@ public class HomeFrame extends JFrame
 		this.setResizable(false);
 		this.setBackground(new Color(230, 230, 230));
 
-		body = new BodyPanel();
-		header = new HeaderPanel();
-		sidebar = new SidebarPanel(body);
+		body = new BodyPanel(user);
+		header = new HeaderPanel(user);
+		sidebar = new SidebarPanel(body, user);
 		footer = new FooterPanel();
 
 		panel = new JPanel();

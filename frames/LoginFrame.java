@@ -99,7 +99,7 @@ public class LoginFrame extends JFrame implements ActionListener
 
 					if(user!=null && user.getEmail().get().equals(email)) {
 						if(user.getPassHash().equals(HashManager.md5(password))) {
-							HomeFrame homeFrame = new HomeFrame();
+							HomeFrame homeFrame = new HomeFrame(user);
 							homeFrame.setVisible(true);
 							this.setVisible(false);
 						} else {
