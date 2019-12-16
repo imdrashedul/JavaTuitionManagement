@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.lang.reflect.*;
 
 import library.*;
+import entity.*;
 import frames.LoginFrame;
 import frames.panels.*;
 import frames.panels.popups.*;
@@ -23,24 +24,29 @@ public class BodyPanel extends JPanel {
 	private int contentMargin;
 	private Point contentPosition;
 	private Dimension contentDim;
+	private User user;
 
-	public BodyPanel() {
+	public BodyPanel(User user) {
 		super();
+		this.user = user;
 		Construct();
 	}
 
-	public BodyPanel(boolean isDoubleBuffered) {
+	public BodyPanel(User user, boolean isDoubleBuffered) {
 		super(isDoubleBuffered);
+		this.user = user;
 		Construct();
 	}
 
-	public BodyPanel(LayoutManager layout) {
+	public BodyPanel(User user, LayoutManager layout) {
 		super(layout);
+		this.user = user;
 		Construct();
 	}
 
-	public BodyPanel(LayoutManager layout, boolean isDoubleBuffered) {
+	public BodyPanel(User user, LayoutManager layout, boolean isDoubleBuffered) {
 		super(layout, isDoubleBuffered);
+		this.user = user;
 		Construct();
 	}
 
@@ -203,7 +209,7 @@ public class BodyPanel extends JPanel {
 	private void __aclAddresser__Settings() {
 		this.removeAll();
 		__aclInvoke__NavigationPane();
-		this.add(new SettingsPanel(contentPosition, contentDim));
+		this.add(new SettingsPanel(user, contentPosition, contentDim));
 		this.revalidate();
 		this.repaint();
 	}

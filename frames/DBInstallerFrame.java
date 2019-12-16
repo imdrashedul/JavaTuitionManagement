@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.time.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.math.BigInteger;
 
 // Custom package
 import library.apachelang3.StringUtils;
@@ -170,7 +172,41 @@ public class DBInstallerFrame extends JFrame implements ActionListener
 									Configuration.ROLE_ADMIN,
 									LocalDateTime.now()
 								);
-								mUser.insert(user);
+								int userid = mUser.insert(user);
+
+								MUserMeta mUsermeta = new MUserMeta();
+
+								ArrayList<UserMeta> metas = new ArrayList<UserMeta>();
+
+								metas.add(new UserMeta(
+									null,
+									BigInteger.valueOf(userid),
+									Configuration.META_FNAME,
+									"Admin"
+								));
+
+								metas.add(new UserMeta(
+									null,
+									BigInteger.valueOf(userid),
+									Configuration.META_LNAME,
+									""
+								));
+
+								metas.add(new UserMeta(
+									null,
+									BigInteger.valueOf(userid),
+									Configuration.META_PROFILE_PIC,
+									""
+								));
+
+								metas.add(new UserMeta(
+									null,
+									BigInteger.valueOf(userid),
+									Configuration.META_MOBILE,
+									""
+								));
+
+								mUsermeta.insert(metas);
 
 								JOptionPane.showMessageDialog(this,"Database Imported Succesfully\nDefault Credentials,\nEmail: admin@system.java\nPassword: admin", "Installation Succesfull", JOptionPane.INFORMATION_MESSAGE);  
 							} catch (SQLException ex) {

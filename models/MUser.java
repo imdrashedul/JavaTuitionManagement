@@ -90,6 +90,8 @@ public class MUser implements IMUser {
 			);
 		}
 
+		db.disconnect();
+
 		return user;
 	}
 
@@ -113,6 +115,8 @@ public class MUser implements IMUser {
 				result.getTimestamp("registered").toLocalDateTime()
 			);
 		}
+
+		db.disconnect();
 
 		return user;
 	}

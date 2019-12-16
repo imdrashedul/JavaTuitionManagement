@@ -14,6 +14,10 @@ import java.io.InputStream;
 public class Configuration {
 
 	public static final String PATH_IMAGE = "assets/images/";
+	public static final String PATH_AVATAR = "assets/images/avatar.png";
+
+	public static final String PATH_UPLOAD = "uploads/";
+
 	public static final ImageIcon SYSTEM_ICON = new ImageIcon("assets/images/appicon.png");
 	public static final ImageIcon MENU_ICON = new ImageIcon("assets/images/it.png");
 	
@@ -51,6 +55,11 @@ public class Configuration {
 	public static final String ROLE_ADMIN = "admin";
 	public static final String ROLE_EMPLOYEE = "employee";
 	public static final String ROLE_STUDENT = "student";
+
+	public static final String META_FNAME = "firstName";
+	public static final String META_LNAME = "lastName";
+	public static final String META_MOBILE = "mobileNumber";
+	public static final String META_PROFILE_PIC = "profilePicture";
 
 	public static final int SIDEBAR_WIDTH = 260;
 	public static final int HEADER_HEIGHT = 60;

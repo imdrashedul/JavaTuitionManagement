@@ -10,6 +10,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import library.*;
+import entity.*;
 
 public class SidebarPanel extends JPanel {
 
@@ -19,28 +20,33 @@ public class SidebarPanel extends JPanel {
 	private HashMap<String, Color> menuColors;
 	private Color baseColor, hoverColor, selectedColor;
 	private BodyPanel body;
+	private User user;
 
-	public SidebarPanel(BodyPanel body) {
+	public SidebarPanel(BodyPanel body, User user) {
 		super();
 		this.body = body;
+		this.user = user;
 		Construct();
 	}
 
-	public SidebarPanel(BodyPanel body, boolean isDoubleBuffered) {
+	public SidebarPanel(BodyPanel body, User user, boolean isDoubleBuffered) {
 		super(isDoubleBuffered);
 		this.body = body;
+		this.user = user;
 		Construct();
 	}
 
-	public SidebarPanel(BodyPanel body, LayoutManager layout) {
+	public SidebarPanel(BodyPanel body, User user, LayoutManager layout) {
 		super(layout);
 		this.body = body;
+		this.user = user;
 		Construct();
 	}
 
-	public SidebarPanel(BodyPanel body, LayoutManager layout, boolean isDoubleBuffered) {
+	public SidebarPanel(BodyPanel body, User user, LayoutManager layout, boolean isDoubleBuffered) {
 		super(layout, isDoubleBuffered);
 		this.body = body;
+		this.user = user;
 		Construct();
 	}
 
@@ -57,24 +63,43 @@ public class SidebarPanel extends JPanel {
 		this.setBackground(baseColor);
 
 		menuList = new ArrayList<>();
+		
 		menuList.add("Dashboard");
-		menuList.add("Student");
-		menuList.add("Attendance");
-		menuList.add("Marks");
-		menuList.add("Exam");
-		menuList.add("Invoice");
-		menuList.add("Fees");
-		menuList.add("Session");
-		menuList.add("Class");
-		menuList.add("Section");
-		menuList.add("Grading");
-		menuList.add("Employee");
-		menuList.add("Salary");
-		menuList.add("Settings");
+
+		if(user.getRole().equals(Configuration.ROLE_ADMIN)) {
+			menuList.add("Student");
+			menuList.add("Attendance");
+			menuList.add("Marks");
+			menuList.add("Exam");
+			menuList.add("Invoice");
+			menuList.add("Fees");
+			menuList.add("Session");
+			menuList.add("Class");
+			menuList.add("Section");
+			menuList.add("Grading");
+			menuList.add("Employee");
+			menuList.add("Salary");
+			menuList.add("Settings");
+		} else if(user.getRole().equals(Configuration.ROLE_EMPLOYEE)) {
+			menuList.add("Student");
+			menuList.add("Attendance");
+			menuList.add("Marks");
+			menuList.add("Exam");
+			menuList.add("Invoice");
+			menuList.add("Section");
+			menuList.add("Salary");
+			menuList.add("Profile");
+		} else if(user.getRole().equals(Configuration.ROLE_STUDENT)) {
+			menuList.add("Attendance");
+			menuList.add("Result");
+			menuList.add("Invoice");
+			menuList.add("Profile");
+		}
+		
 		menuList.add("Logout");
 
 		menuAction = new HashMap<>();
-		menuAction.put("Dashboard", "DashBoard");
+		menuAction.put("Dashboard", "Dashboard");
 		menuAction.put("Student", "Students");
 		menuAction.put("Attendance", "Attendance");
 		menuAction.put("Marks", "Marks");
@@ -87,6 +112,9 @@ public class SidebarPanel extends JPanel {
 		menuAction.put("Grading", "Grading");
 		menuAction.put("Employee", "Employee");
 		menuAction.put("Salary", "Salary");
+		menuAction.put("Settings", "Settings");
+		menuAction.put("Profile", "Settings");
+		menuAction.put("Result", "Result");
 		menuAction.put("Logout", "Logout");
 
 		menuColors = new HashMap<>();
