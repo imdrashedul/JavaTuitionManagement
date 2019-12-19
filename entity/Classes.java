@@ -37,3 +37,4 @@ public class Classes {
 	public String getAlphaName() {
 		return this.alphaName;
 	}
+}
