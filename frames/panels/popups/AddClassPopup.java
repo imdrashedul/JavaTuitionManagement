@@ -7,11 +7,21 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.*;
-
+import entity.*;
+import models.*;
 import library.*;
 import frames.panels.core.*;
 
 public class AddClassPopup extends JDialog implements ActionListener {
+
+	 public Classes classes;
+	 public MClasses mclasses = new MClasses();
+	
+
+	 JTextField className;
+	 JTextField numericName;
+	 JButton btnAdd;
+
 	public AddClassPopup(JFrame jf) {
 		super(jf, "Add New Class", true);
 		this.setLayout(null);
@@ -20,20 +30,18 @@ public class AddClassPopup extends JDialog implements ActionListener {
 		JLabel labelClassName = new JLabel("Class Name");
 		labelClassName.setBounds(20, 25, 150, 30);
 		
-		JTextField className = new JTextField();
+		className = new JTextField();
 		className.setBounds(190, 25, 350, 30);
 		
 		JLabel labelNumericName = new JLabel("Numeric Name");
 		labelNumericName.setBounds(20, 65, 150, 30);
 		
-		JTextField numericName = new JTextField();
+		numericName = new JTextField();
 		numericName.setBounds(190, 65, 350, 30);
 
-		JButton btnAdd = new JButton("Add");
+		btnAdd = new JButton("Add");
 		btnAdd.setBounds(440, 105, 100, 30);
 		btnAdd.addActionListener(this);
-
-		
 
 		this.add(numericName);
 		this.add(labelNumericName);
@@ -45,15 +53,28 @@ public class AddClassPopup extends JDialog implements ActionListener {
         this.setVisible(true);  
 	}
 
-	private void setExtendedSize(Dimension dimension)
-	{
+	private void setExtendedSize(Dimension dimension){
 		Point location = new Point();
 		location.setLocation((Configuration.mainWidth()/2) - (dimension.getWidth()/2), (Configuration.mainHeight()/2) - (dimension.getHeight()/2));
 		this.setSize(dimension);
 		this.setLocation(location);
 	}
 
-	public void actionPerformed(ActionEvent e) {
-	    dispose();
+	public void actionPerformed(ActionEvent e){
+
+		try{
+
+			String classname = new String(className.getText());
+			String num = new String(numericName.getText());
+			int numericnumber = Integer.parseInt(num);
+
+			mclasses.insert(new Classes(1, numericnumber, classname));
+
+		}
+
+		catch(Exception aa)
+		{
+			System.out.println(aa);
+		}
 	}
 }

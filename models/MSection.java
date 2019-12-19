@@ -67,7 +67,7 @@ public class MSection implements IMSection {
 		return rowAffect;
 	}
 
-	public Section retrive(BigInteger id) throws DatabaseException, SQLException {
+	public Section retrive(int id) throws DatabaseException, SQLException {
 		ArrayList<Object> values = new ArrayList<Object>();
 
 		Section section = null;
@@ -80,11 +80,10 @@ public class MSection implements IMSection {
 
 		if(result.next()) {
 			section = new Section(
-				BigInteger.valueOf(result.getInt("id")),
-				BigInteger.valueOf(result.getInt("class_id")),
-				result.getString("name"),
-				
-			);
+				result.getInt("id"),
+				result.getInt("class_id"),
+				result.getString("name")
+				);
 		}
 
 		db.disconnect();
@@ -92,13 +91,13 @@ public class MSection implements IMSection {
 		return section;
 	}
 
-	public Section retrive(BigInteger classId, String alphaName) throws DatabaseException, SQLException {
+	public Section retrive(int classId, String alphaName) throws DatabaseException, SQLException {
 		ArrayList<Object> values = new ArrayList<Object>();
 
 		Section section = null;
 
 		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `class_id` = ? AND `name` = ? ORDER BY `id` DESC LIMIT 0, 1"; 
-		values.add(userId);
+		values.add(classId);
 		values.add(alphaName);
 
 		db.connect();
@@ -106,10 +105,9 @@ public class MSection implements IMSection {
 
 		if(result.next()) {
 			section = new Section(
-				BigInteger.valueOf(result.getInt("id")),
-				BigInteger.valueOf(result.getInt("class_id")),
-				result.getString("name"),
-				
+				result.getInt("id"),
+				result.getInt("class_id"),
+				result.getString("name")
 			);
 		}
 
@@ -118,22 +116,21 @@ public class MSection implements IMSection {
 		return section;
 	}
 
-	public HashMap<String, Section> retrive(Classes class) throws DatabaseException, SQLException {
+	public HashMap<String, Section> retrive(Classes classes) throws DatabaseException, SQLException {
 		HashMap<String, Section> sec = new HashMap<String, Section>();
 		ArrayList<Object> values = new ArrayList<Object>();
 
 		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `class_id` = ? ORDER BY `id` DESC";
-		values.add(user.getId());
+		values.add(classes.getId());
 
 		db.connect();
 		ResultSet result = db.prepare(query, values);
 
 		while(result.next()) {
-			sec.put(result.getint("class_id"), new Section(
-				BigInteger.valueOf(result.getInt("id")),
-				BigInteger.valueOf(result.getInt("class_id")),
-				result.getString("name"),
-				
+			sec.put(result.getString("class_id"), new Section(
+				result.getInt("id"),
+				result.getInt("class_id"),
+				result.getString("name")
 			));
 		}
 

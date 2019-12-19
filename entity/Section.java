@@ -1,24 +1,22 @@
 package entity;
 
-import java.math.BigInteger;
-
 public class Section {
 	
-	private BigInteger id;
-	private BigInteger classId;
+	private int id;
+	private int classId;
 	private String alphaName;
 
 
 	public Section() {}
 
-	public Section(BigInteger id , BigInteger classId , String alphaName ) {
+	public Section(int id , int classId , String alphaName ) {
 		this.id = id;
 		this.classId = classId;
 		this.alphaName = alphaName;
 		
 	}
 
-	public void setClassId(BigInteger classId) {
+	public void setClassId(int classId) {
 		this.classId = classId; 
 	}
 
@@ -26,14 +24,15 @@ public class Section {
 		this.alphaName = alphaName;
 	}
 
-	public BigInteger getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public BigInteger getClassId() {
+	public int getClassId() {
 		return this.classId;
 	}
 
 	public String getAlphaName() {
 		return this.alphaName;
 	}
+}
