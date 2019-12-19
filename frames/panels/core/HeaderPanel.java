@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.event.*;
 import java.awt.Cursor;
 import java.sql.SQLException;
+import library.apachelang3.StringUtils;
 
 import library.*;
 import entity.*;
@@ -19,6 +20,9 @@ import models.*;
 public class HeaderPanel extends JPanel {
 
 	private User user;
+	private JLabel userName, userPic;
+	private BodyPanel body;
+	private JPanel userCard;
 
 	public HeaderPanel(User user) {
 		super();
@@ -44,26 +48,46 @@ public class HeaderPanel extends JPanel {
 		Construct();
 	}
 
+	public void setBody(BodyPanel body) {
+		this.body = body;
+	}
+
+	public BodyPanel getBody() {
+		return this.body;
+	}
+
 	private void Construct() {
 
 		SpringLayout sl = new SpringLayout();
 		FlowLayout fl = new FlowLayout();
 
-		JPanel userCard = new JPanel();
+		userCard = new JPanel();
 		userCard.setLayout(fl);
-		userCard.setBackground(new Color(0, 0, 0, 0));
+		userCard.setBackground(new Color(66, 157, 46));
 
-		JLabel userName = new JLabel("Rashedul");
+		String namePreview = "Admin";
+
+		try {
+			MUserMeta mUserMeta = new MUserMeta();
+			UserMeta metaFirstName = mUserMeta.retrive(user.getId(), Configuration.META_FNAME);
+			UserMeta metaLastName = mUserMeta.retrive(user.getId(), Configuration.META_LNAME);
+
+			String firstName = metaFirstName.getValue();
+			String lastName = metaLastName.getValue();
+
+			namePreview = !StringUtils.isEmpty(firstName) ? firstName : (!StringUtils.isEmpty(lastName) ? lastName : namePreview);
+
+		} catch(DatabaseException | SQLException ex) {}
+
+		userName = new JLabel(namePreview);
 		userName.setFont( Configuration.getFont(Configuration.FONT_REGULAR, Font.BOLD, 14) );
 		userName.setForeground(new Color(255, 255, 255));
 
-		JLabel userPic = new JLabel("[x]");
+		userPic = new JLabel("[x]");
 
 		try {
 			userPic = new JLabel(Helper.circularImage( Helper.bufferedImage(Helper.getAvatar(user)), 40 ));
-		} catch(DatabaseException | SQLException | IOException ex){
-		    JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(this), "ERROR OCCURED !!", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-		}
+		} catch(DatabaseException | SQLException | IOException ex){}
 
 		userCard.add(userPic);
 		userCard.add(userName);
@@ -85,12 +109,25 @@ public class HeaderPanel extends JPanel {
 		sl.putConstraint(SpringLayout.NORTH, userCard, 5, SpringLayout.NORTH, this);
 
 	}
+
+	public void setUserName(String name) {
+		userName.setText(name);
+		userCard.revalidate();
+		userCard.repaint();
+	}
+
+	public void setUserAvatar(File image) {
+		try {
+			userPic.setIcon(Helper.circularImage( Helper.bufferedImage(image), 40 ));
+		} catch(IOException ex){}
+	}
+
 	private MouseListener listenUserCard(JPanel panel) {
 		Color in = new Color(60,142,41);
 		Color out = new Color(66,157,46);
 		return new MouseAdapter() {
 			public void mouseClicked(MouseEvent me){
-				System.out.println("clicked");
+				body.aclInvoke("Settings");
 			}
 			public void mousePressed(MouseEvent me){
 				panel.setBackground(in);

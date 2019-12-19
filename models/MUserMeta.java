@@ -93,6 +93,27 @@ public class MUserMeta implements IMUserMeta {
 		return rowAffect;
 	}
 
+	public int update(User user, String dataKey, String dataValue) throws DatabaseException, SQLException {
+		int rowAffect = 0;
+		UserMeta userMeta = retrive(user.getId(), dataKey);
+
+		if(userMeta!=null) {
+			userMeta.setValue(dataValue);
+			rowAffect = update(userMeta);
+		} else {
+			userMeta = new UserMeta(
+				null,
+				user.getId(),
+				dataKey,
+				dataValue
+			);
+
+			rowAffect = insert(userMeta);
+		}
+
+		return rowAffect;
+	}
+
 	public UserMeta retrive(BigInteger id) throws DatabaseException, SQLException {
 		ArrayList<Object> values = new ArrayList<Object>();
 

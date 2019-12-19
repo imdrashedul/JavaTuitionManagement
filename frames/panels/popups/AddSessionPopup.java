@@ -38,6 +38,7 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 		this.add(startYear);
 		this.add(labelStartYear);
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}

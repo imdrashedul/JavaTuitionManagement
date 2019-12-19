@@ -17,6 +17,20 @@ import models.*;
 
 public class Helper {
 
+	public static boolean emailExists(String email) {
+		boolean exists = false;
+		try {
+			MUser mUser = new MUser();
+			User user = mUser.retrive(new Email(email));
+			exists = (user!=null);
+		} catch(Exception ex) {};
+		return exists;
+	}
+
+	public static boolean isValidEmail(String email) {
+	   String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+	   return email.matches(regex);
+	}
 
 	public static File getAvatar(User user) throws DatabaseException, SQLException {
 

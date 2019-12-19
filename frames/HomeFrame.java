@@ -36,6 +36,9 @@ public class HomeFrame extends JFrame
 		sidebar = new SidebarPanel(body, user);
 		footer = new FooterPanel();
 
+		body.setHeader(header);
+		header.setBody(body);
+
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.add(header);

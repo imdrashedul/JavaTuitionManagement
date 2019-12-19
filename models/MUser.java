@@ -54,7 +54,7 @@ public class MUser implements IMUser {
 		HashMap<String, Object> update = new HashMap<String, Object>();
 		HashMap<String, Object> where = new HashMap<String, Object>();
 
-		update.put("email", user.getEmail());
+		update.put("email", user.getEmail().get());
 		update.put("password", user.getPassHash());
 		update.put("role", user.getRole());
 		update.put("registered", user.getRegistered());

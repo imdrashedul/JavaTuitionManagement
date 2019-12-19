@@ -22,6 +22,7 @@ public class AddFeesPopup extends JDialog implements ActionListener {
 		btnAdd.addActionListener(this);
 
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,600));    
         this.setVisible(true);  
 	}

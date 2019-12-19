@@ -25,6 +25,8 @@ public class BodyPanel extends JPanel {
 	private Point contentPosition;
 	private Dimension contentDim;
 	private User user;
+	private HeaderPanel header;
+
 
 	public BodyPanel(User user) {
 		super();
@@ -59,6 +61,10 @@ public class BodyPanel extends JPanel {
 
 		this.setLayout(null);
 		__aclInvoke__NavigationPane();
+	}
+
+	public void setHeader(HeaderPanel header) {
+		this.header = header;
 	}
 
 	private void __aclAddresser__Students() {
@@ -209,7 +215,7 @@ public class BodyPanel extends JPanel {
 	private void __aclAddresser__Settings() {
 		this.removeAll();
 		__aclInvoke__NavigationPane();
-		this.add(new SettingsPanel(user, contentPosition, contentDim));
+		this.add(new SettingsPanel(user, (JFrame) SwingUtilities.getWindowAncestor(this), header, contentPosition, contentDim));
 		this.revalidate();
 		this.repaint();
 	}
