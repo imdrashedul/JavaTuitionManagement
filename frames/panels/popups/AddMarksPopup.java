@@ -88,6 +88,7 @@ public class AddMarksPopup extends JDialog implements ActionListener {
         this.add(btnAdd);
          this.add(btnAdd1);
         btnAdd.addActionListener(this);
+        this.setResizable(false);
 		setExtendedSize(new Dimension(800,600));    
         this.setVisible(true);  
 	}

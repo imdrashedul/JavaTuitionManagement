@@ -97,12 +97,9 @@ public class AddAttendancePopup extends JDialog implements ActionListener {
 		this.add(btnAdd);
 		
 		btnAdd.addActionListener(this);
-		
+		this.setResizable(false);
 		setExtendedSize(new Dimension(800,540));    
         this.setVisible(true);
-		
-		
-
            		
 	}
 

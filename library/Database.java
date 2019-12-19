@@ -58,12 +58,12 @@ public class Database {
 		this.prefix = prefix;
 	}
 
-	private JSONObject collectInfo(String path) {
+	private JSONObject collectInfo(String file) {
 		
 		JSONObject json = null;
 
 		try {
-			FileManager fileManager = new FileManager(path);
+			FileManager fileManager = new FileManager(file);
 			String content = fileManager.read();
 			if(!StringUtils.isEmpty(content)) {
 				String decrpyted = EncManager.decrypt(content, Configuration.ENC_SALT);
@@ -269,7 +269,7 @@ public class Database {
 			i = 1;
 
 			for(Map.Entry<String, Object> column:where.entrySet()) {
-				query += i==whereTotal ? "`"+column.getKey()+"` = ? AND " : "`"+column.getKey()+"` = ? ";
+				query += i==whereTotal ? "`"+column.getKey()+"` = ? " : "`"+column.getKey()+"` = ? AND ";
 				i++;
 			}
 		}

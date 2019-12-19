@@ -40,6 +40,7 @@ public class AddClassPopup extends JDialog implements ActionListener {
 		this.add(className);
 		this.add(labelClassName);
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}

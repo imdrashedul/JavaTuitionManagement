@@ -40,6 +40,7 @@ public class AddSectionPopup extends JDialog implements ActionListener {
 		this.add(sectionName);
 		this.add(labelSectionName);
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,200));    
         this.setVisible(true);  
 	}

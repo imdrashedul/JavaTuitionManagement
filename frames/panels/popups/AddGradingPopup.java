@@ -56,6 +56,7 @@ public class AddGradingPopup extends JDialog implements ActionListener {
 		this.add(grade);
 		this.add(labelGrade);
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,245));    
         this.setVisible(true);  
 	}

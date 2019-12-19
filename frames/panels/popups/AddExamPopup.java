@@ -72,6 +72,7 @@ public class AddExamPopup extends JDialog implements ActionListener {
 		this.add(l6);
 		this.add(e1);
 		this.add(btnAdd);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,600));    
         this.setVisible(true);
 		

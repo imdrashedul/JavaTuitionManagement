@@ -220,6 +220,7 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 		sp.setBorder(BorderFactory.createEmptyBorder());
 
 		this.setContentPane(sp);
+		this.setResizable(false);
 		setExtendedSize(new Dimension(600,600));    
         this.setVisible(true);	
 	}

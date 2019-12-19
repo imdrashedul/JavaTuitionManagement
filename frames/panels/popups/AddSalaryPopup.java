@@ -95,7 +95,7 @@ public class AddSalaryPopup extends JDialog implements ActionListener {
 		this.add(total);
 		this.add(sp);
 		this.add(btnAdd);  
-		
+		this.setResizable(false);
 		setExtendedSize(new Dimension(400,530));    
         this.setVisible(true);  
 	}
