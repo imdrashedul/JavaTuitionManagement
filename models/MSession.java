@@ -52,9 +52,9 @@ public class MSession implements IMSession {
 		HashMap<String, Object> update = new HashMap<String, Object>();
 		HashMap<String, Object> where = new HashMap<String, Object>();
 
-		update.put("start", session.getPassHash());
-		update.put("end", session.getRole());
-		update.put("created", session.getRegistered());
+		update.put("start", session.getStart());
+		update.put("end", session.getEnd());
+		update.put("created", session.getCreated());
 
 		where.put("id", session.getId());
 
@@ -79,9 +79,9 @@ public class MSession implements IMSession {
 
 		if(result.next()) {
 			session = new Session(
-				int.valueOf(result.getInt("id")),
-				result.getint("start"),
-				result.getint("end"),
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
 				result.getTimestamp("created").toLocalDateTime()
 			);
 		}
@@ -95,16 +95,17 @@ public class MSession implements IMSession {
 		Session session = null;
 
 		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `start` = ? && 'end' = ? ORDER BY `id` DESC LIMIT 0, 1"; 
-		values.add(email.get());
+		values.add(start);
+		values.add(end);
 
 		db.connect();
 		ResultSet result = db.prepare(query, values);
 
 		if(result.next()) {
 			session = new Session(
-				int.valueOf(result.getInt("id")),
-				result.getint("start"),
-				result.getint("end"),
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
 				result.getTimestamp("created").toLocalDateTime()
 			);
 		}
