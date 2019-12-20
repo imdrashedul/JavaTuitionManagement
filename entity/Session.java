@@ -14,7 +14,6 @@ public class Session {
 
 	public Session(int id,int start, int end, LocalDateTime created ){
 		this.id = id;
-		this.email = email;
 		this.start = start;
 		this.end = end;
 		this.created = created;
