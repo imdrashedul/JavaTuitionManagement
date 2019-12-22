@@ -426,6 +426,8 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 			JOptionPane.showMessageDialog(parent, "Invalid Mobile Number (Parents)", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
 		} else if(!Helper.isValidEmail(email)) {
 			JOptionPane.showMessageDialog(parent, "Invalid Email Address", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
+		} else if(Helper.emailAssigned(email)) {
+			JOptionPane.showMessageDialog(parent, "Email Already Exists", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
 		} else if(password.length()<6) {
 			JOptionPane.showMessageDialog(parent, "Weak Password. It should be 6 digits long", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
 		} else {

@@ -20,6 +20,37 @@ import models.*;
 
 public class Helper {
 
+	public static  String genDefSessionTitle() {
+		String title = "Sessions: ";
+		String sessionTitle = "";
+		try {
+			MSession mSession = new MSession();
+			ArrayList<Session> sessions = mSession.table("1");
+
+			int size = sessions.size();
+			int i = 1;
+			for (Session session:sessions ) {
+				sessionTitle += session.getStart() + "-" + session.getEnd() + (size!=i?", ":" ");
+				i++;
+			}
+
+		} catch(Exception ex) {}
+
+		title += StringUtils.isEmpty(sessionTitle) ? "Click here to set default" : sessionTitle; 
+
+		return title;
+	}
+
+	public static boolean emailAssigned(String email) {
+		boolean exists = false;
+		try {
+			MUser mUser = new MUser();
+			User user = mUser.retrive(new Email(email));
+			exists = user!=null;
+		} catch(Exception ex) {} 
+		return exists;
+	}
+
 
 	public static LocalDateTime strToDate(String date, String pattern) {
 		//"yyyy-MM-dd HH:mm:ss"

@@ -280,7 +280,7 @@ public class SettingsPanel extends TitledPanel implements ActionListener {
 					}
 
 					if(flaq) {
-						JOptionPane.showMessageDialog(parent, "Successful !", "Profile Updated Successfully", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(parent, "Profile Updated Successfully", "Successful !", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 				catch( DatabaseException | SQLException | IOException ex ) {
@@ -326,7 +326,7 @@ public class SettingsPanel extends TitledPanel implements ActionListener {
 					user.setPassHash(newPassHash);
 					mUser.update(user);
 
-					JOptionPane.showMessageDialog(parent, "Successful !", "Password Changed Successfully! Please Login Again", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(parent, "Password Changed Successfully! Please Login Again", "Successful !", JOptionPane.INFORMATION_MESSAGE);
 				
 					headerPanel.getBody().aclInvoke("Logout");
 

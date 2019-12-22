@@ -75,7 +75,7 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 
 				LocalDateTime datetime1 = LocalDateTime.now();  
     			
-				mses.insert(new Session (1,start, end, datetime1 ));
+        mses.insert(new Session (1,start, end, datetime1 ));
 				dispose();
 		}
 
