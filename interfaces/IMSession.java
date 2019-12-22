@@ -14,4 +14,5 @@ public interface IMSession {
 	public Session retrive(int sessionid) throws DatabaseException, SQLException;
 	public Session retrive(int start, int end) throws DatabaseException, SQLException;
 	public HashMap<Integer, JcbItem<Session>> retrive() throws DatabaseException, SQLException;
+	public HashMap<Integer, JcbItem<Session>> retrive(boolean cached) throws DatabaseException, SQLException;
 }

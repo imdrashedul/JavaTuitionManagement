@@ -147,8 +147,6 @@ public class AddMarksPopup extends JDialog implements ActionListener {
 
 	} 
 	
-
-
 	private void setExtendedSize(Dimension dimension)
 	{
 		Point location = new Point();

@@ -234,6 +234,7 @@ public class DBImporter {
 						"`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT," +
 						"`start` int(10) UNSIGNED NOT NULL," +
 						"`end` int(10) UNSIGNED NOT NULL," +
+						"`cached` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0/1 => removed/added'," +
 						"`created` datetime NOT NULL," +
 						"PRIMARY KEY (`id`)" +
 						") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
