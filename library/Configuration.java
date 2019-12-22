@@ -49,7 +49,7 @@ public class Configuration {
 	public static final String FONT_PRIMARY = "TimesRoman";
 	public static final String FONT_LIGHT = "MontserratLight.ttf";
 	public static final String FONT_REGULAR = "MontserratRegular.ttf";
-	public static final String SYSTEM_DEVELOPER = "M. Rashedul Islam";
+	public static final String SYSTEM_DEVELOPER = " Group - 5";
 	public static final String ENC_SALT = "$a1h9Sa&6pLxS1";
 	
 	public static final String ROLE_ADMIN = "admin";
@@ -58,7 +58,16 @@ public class Configuration {
 
 	public static final String META_FNAME = "firstName";
 	public static final String META_LNAME = "lastName";
+	public static final String META_FATHER_NAME = "fatherName";
+	public static final String META_MOTHER_NAME = "motherName";
+	public static final String META_GENDER = "gender";
+	public static final String META_DOB = "dateOfBirth";
+	public static final String META_BLOOD_GROUP = "bloodGroup";
+	public static final String META_ADDRESS = "address";
 	public static final String META_MOBILE = "mobileNumber";
+	public static final String META_MOBILE_PARENT = "mobileNumberParent";
+	public static final String META_INSTITUTE = "institute";
+	public static final String META_AIM_IN_LIFE = "aimInLife";
 	public static final String META_PROFILE_PIC = "profilePicture";
 
 	public static final int SIDEBAR_WIDTH = 260;

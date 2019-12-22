@@ -84,13 +84,13 @@ public class DBImporter {
 	private void table_fees() throws SQLException, DatabaseException {
 		String query = "CREATE TABLE IF NOT EXISTS `"+db.getTable(Configuration.TABLE_FEES)+"` (" +
 						"`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT," +
-						"`type` int(10) UNSIGNED NOT NULL," +
+						"`type_id` int(10) UNSIGNED NOT NULL," +
 						"`section_id` int(10) UNSIGNED NOT NULL," +
 						"`amount` float NOT NULL DEFAULT '0'," +
 						"`comment` text COLLATE utf8mb4_unicode_ci NOT NULL," +
 						"`created` datetime NOT NULL," +
 						"PRIMARY KEY (`id`)," +
-						"KEY `type` (`type`)," +
+						"KEY `type_id` (`type_id`)," +
 						"KEY `section_id` (`section_id`)" +
 						") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
 		db.updateQuery(query);
@@ -314,7 +314,7 @@ public class DBImporter {
 
 		query = "ALTER TABLE `"+db.getTable(Configuration.TABLE_FEES)+"`" +
 				"ADD CONSTRAINT `fk_fees_section` FOREIGN KEY (`section_id`) REFERENCES `"+db.getTable(Configuration.TABLE_SECTION)+"` (`id`)," +
-				"ADD CONSTRAINT `fk_fees_type` FOREIGN KEY (`type`) REFERENCES `"+db.getTable(Configuration.TABLE_FEES_TYPE)+"` (`id`);";
+				"ADD CONSTRAINT `fk_fees_type` FOREIGN KEY (`type_id`) REFERENCES `"+db.getTable(Configuration.TABLE_FEES_TYPE)+"` (`id`);";
 		db.updateQuery(query);
 
 		query = "ALTER TABLE `"+db.getTable(Configuration.TABLE_FEES_HISTORY)+"`" +

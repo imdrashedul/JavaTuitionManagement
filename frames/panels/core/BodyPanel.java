@@ -268,10 +268,13 @@ public class BodyPanel extends JPanel {
 			try {
   				callback.invoke(this);
 			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
 				__aclInvoke__Error404();
-			} catch (IllegalAccessException e) { 
+			} catch (IllegalAccessException e) {
+				e.printStackTrace(); 
 			 	__aclInvoke__Error404();
 			} catch (InvocationTargetException e) { 
+				e.printStackTrace();
 				__aclInvoke__Error404();
 			}
 		}

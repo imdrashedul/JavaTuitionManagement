@@ -116,8 +116,8 @@ public class MSection implements IMSection {
 		return section;
 	}
 
-	public HashMap<String, Section> retrive(Classes classes) throws DatabaseException, SQLException {
-		HashMap<String, Section> sec = new HashMap<String, Section>();
+	public HashMap<Integer, JcbItem<Section>> retrive(Classes classes) throws DatabaseException, SQLException {
+		HashMap<Integer, JcbItem<Section>> sections = new HashMap<Integer, JcbItem<Section>>();
 		ArrayList<Object> values = new ArrayList<Object>();
 
 		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `class_id` = ? ORDER BY `id` DESC";
@@ -127,15 +127,16 @@ public class MSection implements IMSection {
 		ResultSet result = db.prepare(query, values);
 
 		while(result.next()) {
-			sec.put(result.getString("class_id"), new Section(
+			Section section = new Section(
 				result.getInt("id"),
 				result.getInt("class_id"),
 				result.getString("name")
-			));
+			); 
+			sections.put(section.getId(), new JcbItem<Section>(section.getAlphaName(), section));
 		}
 
 		db.disconnect();
 
-		return sec;
+		return sections;
 	}
 }

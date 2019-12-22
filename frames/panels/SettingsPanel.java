@@ -289,13 +289,13 @@ public class SettingsPanel extends TitledPanel implements ActionListener {
 			}
 		} else if(e.getSource()==btnBrowsePicture) {
 			if (fileChooser.showDialog(parent, "Open") == JFileChooser.APPROVE_OPTION) {
-				String choosenPath = fileChooser.getSelectedFile().toString();
-				if( !StringUtils.isEmpty(choosenPath) ) {
-					File choosenFile = new File(choosenPath);
-					if(choosenFile.exists()) {
+				String chosenPath = fileChooser.getSelectedFile().toString();
+				if( !StringUtils.isEmpty(chosenPath) ) {
+					File chosenFile = new File(chosenPath);
+					if(chosenFile.exists()) {
 						try {
-							changedAvatar = choosenPath;
-							previewProfilePicture.setIcon(Helper.squareImage( Helper.bufferedImage(choosenFile), 100 ));
+							changedAvatar = chosenPath;
+							previewProfilePicture.setIcon(Helper.squareImage( Helper.bufferedImage(chosenFile), 100 ));
 						} catch (IOException ex) {
 							JOptionPane.showMessageDialog(parent, ex.getMessage(), "ERROR OCCURED !!", JOptionPane.ERROR_MESSAGE);
 						}
