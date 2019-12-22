@@ -2,6 +2,7 @@ package entity;
 
 import java.time.LocalDateTime;
 import java.math.BigInteger;
+import java.lang.*;
 
 
 
@@ -75,7 +76,7 @@ public class Exams {
 		this.name = name;
 	}
 
-	public int getId() {
+	public BigInteger getId() {
 		return this.id;
 	}
 
@@ -103,7 +104,7 @@ public class Exams {
 		return this.writtenTotal;
 	}
 
-	public String getaName() {
+	public String getName() {
 		return this.name;
 	}
 

@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.*;
 import java.sql.ResultSet;
 import java.math.BigInteger;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.util.*;
 import library.*;
 import entity.*;
 import interfaces.*;
+import models.*;
 
 public class MExams implements IMExams {
 
@@ -26,7 +28,7 @@ public class MExams implements IMExams {
 		data.put("class_id", exams.getClassId());
 		data.put("section_id", exams.getSectionId());
 		data.put("session_id", exams.getSessionId());
-		data.put("name", exams.getAlphaName());
+		data.put("name", exams.getName());
 		data.put("exam_type", exams.getExamType());
 		data.put("exam_total", exams.getExamTotal());
 		data.put("exam_date", exams.getExamDate());
