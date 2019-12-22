@@ -54,6 +54,7 @@ public class MSession implements IMSession {
 
 		update.put("start", session.getStart());
 		update.put("end", session.getEnd());
+		update.put("cached", session.getCached());
 		update.put("created", session.getCreated());
 
 		where.put("id", session.getId());
@@ -82,6 +83,7 @@ public class MSession implements IMSession {
 				result.getInt("id"),
 				result.getInt("start"),
 				result.getInt("end"),
+				result.getString("cached"),
 				result.getTimestamp("created").toLocalDateTime()
 			);
 		}
@@ -106,6 +108,7 @@ public class MSession implements IMSession {
 				result.getInt("id"),
 				result.getInt("start"),
 				result.getInt("end"),
+				result.getString("cached"),
 				result.getTimestamp("created").toLocalDateTime()
 			);
 		}
@@ -127,9 +130,81 @@ public class MSession implements IMSession {
 				result.getInt("id"),
 				result.getInt("start"),
 				result.getInt("end"),
+				result.getString("cached"),
 				result.getTimestamp("created").toLocalDateTime()
 			);
 			sessions.put(session.getId(), new JcbItem<Session>( Helper.getSessionStr(session), session ));
+		}
+
+		db.disconnect();
+
+		return sessions;
+	}
+
+	public HashMap<Integer, JcbItem<Session>> retrive(boolean cached) throws DatabaseException, SQLException {
+		HashMap<Integer, JcbItem<Session>> sessions = new HashMap<Integer, JcbItem<Session>>();
+
+		String flaq = cached ? "1":"0";
+		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `cached` = "+flaq+" ORDER BY `id` DESC";
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			Session session = new Session(
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
+				result.getString("cached"),
+				result.getTimestamp("created").toLocalDateTime()
+			);
+			sessions.put(session.getId(), new JcbItem<Session>( Helper.getSessionStr(session), session ));
+		}
+
+		db.disconnect();
+
+		return sessions;
+	}
+
+	public ArrayList<Session> table(String cached) throws DatabaseException, SQLException {
+		ArrayList<Session> sessions = new ArrayList<Session>();
+
+		String query = "SELECT * FROM `"+db.getTable(table)+"` WHERE `cached` = "+cached+" ORDER BY `id` DESC";
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			sessions.add(new Session(
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
+				result.getString("cached"),
+				result.getTimestamp("created").toLocalDateTime()
+			));
+		}
+
+		db.disconnect();
+
+		return sessions;
+	}
+
+	public ArrayList<Session> table() throws DatabaseException, SQLException {
+		ArrayList<Session> sessions = new ArrayList<Session>();
+
+		String query = "SELECT * FROM `"+db.getTable(table)+"` ORDER BY `id` DESC";
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			sessions.add(new Session(
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
+				result.getString("cached"),
+				result.getTimestamp("created").toLocalDateTime()
+			));
 		}
 
 		db.disconnect();

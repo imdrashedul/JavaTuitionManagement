@@ -21,6 +21,7 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 	public MSession mses = new MSession();
 	JTextField startYear;
 	JTextField endYear;
+	JFrame jf;
 
 
 	public AddSessionPopup(JFrame jf) {
@@ -63,7 +64,6 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	   // dispose();
 
 		try{
 
@@ -75,11 +75,14 @@ public class AddSessionPopup extends JDialog implements ActionListener {
 
 				LocalDateTime datetime1 = LocalDateTime.now();  
     			
-				mses.insert(new Session (1,start, end, datetime1 ));
+        mses.insert(new Session (1,start, end, datetime1 ));
+				dispose();
 		}
 
 		catch(Exception aa){
-				System.out.println(aa);
+				//System.out.println(aa);
+			JOptionPane.showMessageDialog(jf, "Please Insert Session", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
+			
 		}
 
 	}

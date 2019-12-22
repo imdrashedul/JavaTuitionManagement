@@ -8,14 +8,16 @@ public class Session {
 	private int id;
 	private int start;
 	private int end;
+	private String cached;
 	private LocalDateTime created;
 
 	public Session() {}
 
-	public Session(int id,int start, int end, LocalDateTime created ){
+	public Session(int id,int start, int end, String cached, LocalDateTime created ){
 		this.id = id;
 		this.start = start;
 		this.end = end;
+		this.cached = cached;
 		this.created = created;
 	}
 
@@ -25,6 +27,10 @@ public class Session {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	public void setCached(String cached) {
+		this.cached = cached;
 	}
 
 	public void setCreated(LocalDateTime created) {
@@ -41,6 +47,10 @@ public class Session {
 
 	public int getEnd() {
 		return this.end;
+	}
+
+	public String getCached() {
+		return this.cached;
 	}
 
 	public LocalDateTime getCreated() {
