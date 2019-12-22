@@ -21,7 +21,7 @@ public class UserMeta {
 	}
 
 	public void setUser(BigInteger userId) {
-		this.id = userId;
+		this.userId = userId;
 	}
 
 	public void setKey(String dataKey) {
@@ -29,7 +29,7 @@ public class UserMeta {
 	}
 
 	public void setValue(String dataValue) {
-		this.dataValue= dataValue;
+		this.dataValue = dataValue;
 	}
 
 	public BigInteger getId() {

@@ -113,6 +113,7 @@ public class MClasses implements IMClasses {
 		return classes;
 		
 	}
+
 	public Classes retrive(String alphaName) throws DatabaseException, SQLException {
 		
 		ArrayList<Object> values = new ArrayList<Object>();
@@ -135,6 +136,28 @@ public class MClasses implements IMClasses {
 
 		return classes;
 		
+	}
+
+	public HashMap<Integer, JcbItem<Classes>> retrive() throws DatabaseException, SQLException {
+		HashMap<Integer, JcbItem<Classes>> classes = new HashMap<Integer, JcbItem<Classes>>();
+
+		String query = "SELECT * FROM `"+db.getTable(table)+"` ORDER BY `id` DESC";
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			Classes _class = new Classes(
+				result.getInt("id"),
+				result.getInt("num"),
+				result.getString("name")
+			);
+			classes.put(_class.getId(), new JcbItem<Classes>( _class.getAlphaName(), _class ));
+		}
+
+		db.disconnect();
+
+		return classes;
 	}
 
 }

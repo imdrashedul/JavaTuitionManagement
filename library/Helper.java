@@ -10,12 +10,89 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.awt.AlphaComposite;
 import java.awt.RenderingHints;
+import java.util.*;
+import java.time.*;
+import java.time.format.*;
 
 import entity.*;
 import models.*;
 
 
 public class Helper {
+
+
+	public static LocalDateTime strToDate(String date, String pattern) {
+		//"yyyy-MM-dd HH:mm:ss"
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+		return dateTime;
+	}
+
+	public static String cleanPhoneNo(String no) {
+		no = no.replaceAll("\\s","");
+        no = no.replaceAll("-","");
+        no = no.replaceAll("\\+","");
+        no = no.length()>11 ? no.substring(2, no.length()) : no;
+
+        return no;
+	}
+
+	public static boolean verifyBdOperator(String number) {
+		String[] operators = new String[]{"013", "015", "016", "017", "018", "019"};
+        List<String> list = Arrays.asList(operators);
+       	return list.contains(number.substring(0, 3));
+	}
+
+	public static boolean verifyPhoneNo(String number) {
+		number = cleanPhoneNo(number);
+		return number.length()==11 && verifyBdOperator(number);
+	}
+
+	public static <T> Object getSelectedValue(JComboBox<JcbItem<T>> comboBox) {
+		if(comboBox.getSelectedItem()!=null) {
+			JcbItem<T> item = (JcbItem<T>) comboBox.getSelectedItem();
+			return item.getKey();
+		}
+
+		return null;
+	}
+
+	public static String getSelectedValue(ButtonGroup group) {
+		ButtonModel model = group.getSelection();
+		
+		if(model!=null) {
+			return model.getActionCommand();
+		}
+
+		return "";
+	}
+
+	public static int generateRandom(int length) {
+		Random r = new Random();
+		int m = (int) Math.pow(10, length - 1);
+    	return m + r.nextInt(9 * m);
+	}
+
+	public static <T, E> void initializeCombo(JComboBox<JcbItem<E>> comboBox, HashMap<T, JcbItem<E>> items, T selected, String title) {
+		
+		if(title != null && !title.equals("")) {
+			comboBox.addItem(new JcbItem<E>(title, null));
+		}
+
+		if( items!= null) {
+			for(Map.Entry<T, JcbItem<E>> item:items.entrySet()) {
+				comboBox.addItem(item.getValue());
+			}
+		}
+		
+		if(selected!= null && items.containsKey(selected)) {
+			comboBox.setSelectedItem(items.get(selected));
+		}
+	}
+
+	public static String getSessionStr(Session session) {
+		return session.getStart() + "-" + session.getEnd();
+	}
 
 	public static boolean emailExists(String email) {
 		boolean exists = false;

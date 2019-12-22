@@ -109,7 +109,31 @@ public class MSession implements IMSession {
 				result.getTimestamp("created").toLocalDateTime()
 			);
 		}
+		db.disconnect();
 
 		return session;
+	}
+
+	public HashMap<Integer, JcbItem<Session>> retrive() throws DatabaseException, SQLException {
+		HashMap<Integer, JcbItem<Session>> sessions = new HashMap<Integer, JcbItem<Session>>();
+
+		String query = "SELECT * FROM `"+db.getTable(table)+"` ORDER BY `id` DESC";
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			Session session = new Session(
+				result.getInt("id"),
+				result.getInt("start"),
+				result.getInt("end"),
+				result.getTimestamp("created").toLocalDateTime()
+			);
+			sessions.put(session.getId(), new JcbItem<Session>( Helper.getSessionStr(session), session ));
+		}
+
+		db.disconnect();
+
+		return sessions;
 	}
 }
