@@ -1,16 +1,22 @@
 package frames.panels.popups;
-
 import javax.swing.*;
 import java.awt.LayoutManager;
 import java.awt.Color;
 import java.awt.Font;
+import library.apachelang3.StringUtils;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.*;
-import entity.*;
-import models.*;
+import java.time.*;
+import java.util.HashMap;
+import java.sql.SQLException;
+import java.io.IOException;
+import java.io.File;
+
 import library.*;
 import frames.panels.core.*;
+import entity.*;
+import models.*;
 
 public class AddClassPopup extends JDialog implements ActionListener {
 
@@ -21,6 +27,7 @@ public class AddClassPopup extends JDialog implements ActionListener {
 	 JTextField className;
 	 JTextField numericName;
 	 JButton btnAdd;
+	 JFrame jf;
 
 	public AddClassPopup(JFrame jf) {
 		super(jf, "Add New Class", true);
@@ -70,11 +77,12 @@ public class AddClassPopup extends JDialog implements ActionListener {
 
 			mclasses.insert(new Classes(1, numericnumber, classname));
 
+			dispose();
+
 		}
 
-		catch(Exception aa)
-		{
-			System.out.println(aa);
-		}
+		catch(DatabaseException | SQLException ex) {
+				JOptionPane.showMessageDialog(jf, ex.getMessage(), "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);
+			}
 	}
 }
