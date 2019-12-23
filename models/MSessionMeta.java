@@ -86,12 +86,37 @@ public class MSessionMeta implements IMSessionMeta {
 				result.getInt("section_id"),
 				BigInteger.valueOf(result.getInt("user_id")),
 				result.getString("status"),
-				result.getTimestamp("migrated").toLocalDateTime()
+				result.getTimestamp("migrated")!=null ? result.getTimestamp("migrated").toLocalDateTime() : null
 			);
 		}
 
 		db.disconnect();
 
 		return sessionMeta;
+	}
+
+	public ArrayList<SessionMeta> retrive() throws DatabaseException, SQLException {
+		ArrayList<SessionMeta> sessionMetas = new ArrayList<SessionMeta>();
+
+		String query = "SELECT a.* FROM `"+db.getTable(table)+"` a INNER JOIN `"+db.getTable(Configuration.TABLE_SESSION)+"` b ON a.session_id = b.id WHERE b.cached = '1' AND a.status = '0' ORDER BY a.roll DESC"; 
+
+		db.connect();
+		ResultSet result = db.query(query);
+
+		while(result.next()) {
+			sessionMetas.add(new SessionMeta(
+				BigInteger.valueOf(result.getInt("roll")),
+				result.getInt("session_id"),
+				result.getInt("section_id"),
+				BigInteger.valueOf(result.getInt("user_id")),
+				result.getString("status"),
+				result.getTimestamp("migrated")!=null ? result.getTimestamp("migrated").toLocalDateTime() : null
+			));
+		}
+
+		db.disconnect();
+
+		return sessionMetas;
+
 	}
 }

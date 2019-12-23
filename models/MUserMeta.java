@@ -75,6 +75,20 @@ public class MUserMeta implements IMUserMeta {
 		return rowAffect;
 	}
 
+	public int delete(BigInteger userid) throws DatabaseException, SQLException {
+		HashMap<String, Object> where = new HashMap<String, Object>();
+
+		where.put("user_id", userid);
+
+		int rowAffect = 0;
+
+		db.connect();
+		rowAffect = db.remove(table, where);
+		db.disconnect();
+
+		return rowAffect;
+	}
+
 	public int update(UserMeta userMeta) throws DatabaseException, SQLException {
 		HashMap<String, Object> update = new HashMap<String, Object>();
 		HashMap<String, Object> where = new HashMap<String, Object>();

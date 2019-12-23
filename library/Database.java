@@ -308,7 +308,7 @@ public class Database {
 			query += "DELETE FROM `"+getTable(table)+"` WHERE ";
 
 			for(Map.Entry<String, Object> column:where.entrySet()) {
-					query += i==whereTotal ? "`"+column.getKey()+"` = ? AND " : "`"+column.getKey()+"` = ? ";
+					query += i!=whereTotal ? "`"+column.getKey()+"` = ? AND " : "`"+column.getKey()+"` = ? ";
 				i++;
 			}
 		}

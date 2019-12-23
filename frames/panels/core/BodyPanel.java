@@ -36,7 +36,8 @@ public class BodyPanel extends JPanel {
 	private User user;
 	private HeaderPanel header;
 	private JLabel sLabel;
-	ArrayList<Session> sessions;
+	private ArrayList<Session> sessions;
+	private Object invoker;
 
 
 	public BodyPanel(User user) {
@@ -87,7 +88,7 @@ public class BodyPanel extends JPanel {
 	}
 
 	private void __aclAddresser__AddNewStudent() {
-		new AddStudentPopup((JFrame) SwingUtilities.getWindowAncestor(this));
+		new AddStudentPopup((JFrame) SwingUtilities.getWindowAncestor(this), (StudentsPanel) invoker);
 	}
 
 	private void __aclAddresser__Attendance() {
@@ -473,5 +474,13 @@ public class BodyPanel extends JPanel {
 		    	Helper.initializeCombo(combobox, null, null, "No Academic Year Found");
 		    }
 		} catch (DatabaseException | SQLException ex) {}
+	}
+
+	public void setInvoker(Object invoker) {
+		this.invoker = invoker;
+	}
+
+	public Object getInvoker() {
+		return this.invoker;
 	}
 }

@@ -21,6 +21,7 @@ import library.*;
 import library.datepicker.main.components.*;
 import library.datepicker.main.components.TimePickerSettings.TimeArea;
 import library.datepicker.main.zinternaltools.*;
+import frames.panels.StudentsPanel;
 import frames.panels.core.*;
 import entity.*;
 import models.*;
@@ -45,9 +46,12 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 	JRadioButton radiobuttonMale, radiobuttonFemale, radiobuttonMedical, radiobuttonEngineering, radiobuttonOthers;
 	JPasswordField inputPassword;
 
-	public AddStudentPopup(JFrame parent) {
+	StudentsPanel sparent;
+
+	public AddStudentPopup(JFrame parent, StudentsPanel sparent) {
 		super(parent, "Add New Student", true);
 		this.parent = parent;
+		this.sparent = sparent;
 		this.setLayout(null);
 		this.setLocationRelativeTo(null);
 
@@ -563,6 +567,7 @@ public class AddStudentPopup extends JDialog implements ActionListener {
 
 					if(inserted>0) {
 						JOptionPane.showMessageDialog(parent, "Student "+firstName+" "+lastName+" Added\nRoll: "+roll+"\nPassword: "+password, "Student Added Successfully !!",  JOptionPane.INFORMATION_MESSAGE);
+						sparent.reDrawTable();
 						dispose();
 					} else {
 						JOptionPane.showMessageDialog(parent, "Something went wrong. PLease contact system developer", "ERROR OCCURED !!",  JOptionPane.ERROR_MESSAGE);

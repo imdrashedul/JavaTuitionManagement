@@ -12,6 +12,7 @@ import java.awt.AlphaComposite;
 import java.awt.RenderingHints;
 import java.util.*;
 import java.time.*;
+import javax.swing.table.*;
 import java.time.format.*;
 
 import entity.*;
@@ -19,6 +20,20 @@ import models.*;
 
 
 public class Helper {
+
+	public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth,
+	        double... percentages) {
+	    double total = 0;
+	    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+	        total += percentages[i];
+	    }
+	 
+	    for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+	        TableColumn column = table.getColumnModel().getColumn(i);
+	        column.setPreferredWidth((int)
+	                (tablePreferredWidth * (percentages[i] / total)));
+	    }
+	}
 
 	public static  String genDefSessionTitle() {
 		String title = "Sessions: ";
